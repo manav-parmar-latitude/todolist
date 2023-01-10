@@ -40,16 +40,16 @@ def add_todolist():
 @app.route('/all-todolist/',methods = ['GET'])
 def get_todolists():
     try:
-        new_todo=TodoList.query.all()
-        return todolists_schema.jsonify(new_todo)
+        get_todolists=TodoList.query.all()
+        return todolists_schema.jsonify(get_todolists)
     except Exception as e:
         return jsonify({"Error":"Invalid request"})        
 
 @app.route('/todolist/<int:id>/',methods = ['GET'])
 def get_todolist(id):
     try:
-        new_todo=TodoList.query.get(id)
-        return todolist_schema.jsonify(new_todo)
+        get_todolist=TodoList.query.get(id)
+        return todolist_schema.jsonify(get_todolist)
     except Exception as e:
         return jsonify({"Error":"Invalid request"})   
 
@@ -68,8 +68,8 @@ def update_todolist(id):
 @app.route('/delete-todolist/<int:id>/',methods = ['DELETE'])
 def delete_todolist(id):
     try:
-        update_todo=TodoList.query.get_or_404(int(id))
-        db.session.delete(update_todo)
+        delete_todolist=TodoList.query.get_or_404(int(id))
+        db.session.delete(delete_todolist)
         db.session.commit()
         return jsonify({"Success":"Data has been deleted"})  
     except Exception as e:
